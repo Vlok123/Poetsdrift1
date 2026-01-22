@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
@@ -58,32 +59,13 @@ export default function Contact() {
               
               {/* Illustratie - Bankstel met stofzuiger */}
               <div className="mb-8 bg-gray-100 p-6 border-2 border-black">
-                <svg
-                  width="100%"
-                  height="280"
-                  viewBox="0 0 400 280"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {/* Bankstel - 2-zits bank */}
-                  <rect x="50" y="180" width="280" height="80" rx="5" stroke="black" strokeWidth="3" fill="white" />
-                  <rect x="60" y="190" width="260" height="60" rx="3" stroke="black" strokeWidth="2" fill="none" />
-                  {/* Kussen scheiding */}
-                  <line x1="190" y1="190" x2="190" y2="250" stroke="black" strokeWidth="2" />
-                  {/* Hand met stofzuiger gereedschap */}
-                  <circle cx="300" cy="150" r="12" stroke="black" strokeWidth="2.5" fill="white" />
-                  {/* Arm */}
-                  <line x1="300" y1="162" x2="300" y2="190" stroke="black" strokeWidth="2.5" />
-                  {/* Stofzuiger handvat */}
-                  <rect x="290" y="185" width="20" height="8" rx="1" stroke="black" strokeWidth="2" fill="white" />
-                  {/* Stofzuiger slang */}
-                  <path d="M 310 189 Q 330 170 350 150" stroke="black" strokeWidth="2.5" fill="none" />
-                  {/* Stofzuiger apparaat */}
-                  <rect x="340" y="140" width="40" height="25" rx="3" stroke="black" strokeWidth="2.5" fill="white" />
-                  <circle cx="360" cy="152" r="4" stroke="black" strokeWidth="2" fill="none" />
-                  {/* Stofzuiger buis naar bank */}
-                  <line x1="300" y1="189" x2="280" y2="200" stroke="black" strokeWidth="2" />
-                </svg>
+                <Image
+                  src="/images/Bank-home.png"
+                  alt="Bankstel met stofzuiger"
+                  width={500}
+                  height={400}
+                  className="w-full h-auto object-contain"
+                />
               </div>
               
               <div className="space-y-6 mb-8">
