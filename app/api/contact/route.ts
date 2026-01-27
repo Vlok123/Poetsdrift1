@@ -59,7 +59,7 @@ Dit bericht is verzonden via het contactformulier op poetsdrift.nl
     const { data, error } = await resend.emails.send({
       from: 'Poetsdrift Contactformulier <onboarding@resend.dev>', // Voor productie: gebruik je eigen geverifieerde domain
       to: 'poetsdrift@gmail.com',
-      replyTo: email,
+      reply_to: email,
       subject: emailSubject,
       text: emailBody,
       html: `
