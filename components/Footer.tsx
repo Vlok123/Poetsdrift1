@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, Instagram } from "lucide-react";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -23,6 +23,17 @@ export default function Footer() {
               <div className="flex items-center space-x-2 text-gray-300">
                 <Mail className="h-5 w-5" />
                 <span className="font-normal uppercase">POETSDRIFT@GMAIL.COM</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-300">
+                <Instagram className="h-5 w-5" />
+                <a 
+                  href="https://www.instagram.com/poetsdrift" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-normal uppercase hover:text-white transition-colors"
+                >
+                  @POETSDRIFT
+                </a>
               </div>
             </div>
           </div>

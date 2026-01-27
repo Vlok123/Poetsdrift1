@@ -209,7 +209,14 @@ export default function Prijslijst() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-black uppercase text-sm md:text-base tracking-wider font-normal">INSTAGRAM</span>
-                <span className="text-black text-sm md:text-base font-medium">POETSDRIFT</span>
+                <a 
+                  href="https://www.instagram.com/poetsdrift" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black text-sm md:text-base font-medium hover:opacity-70 transition-opacity"
+                >
+                  @POETSDRIFT
+                </a>
               </div>
             </div>
           </div>

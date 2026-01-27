@@ -10,9 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1a4d3a", // Donkergroen
-          dark: "#0f2e1f",
-          light: "#2d6b4f",
+          DEFAULT: "#000000", // Zwart
+          dark: "#000000",
+          light: "#1a1a1a",
         },
         secondary: {
           DEFAULT: "#FAFAFA",
@@ -20,9 +20,9 @@ const config: Config = {
           light: "#FFFFFF",
         },
         accent: {
-          DEFAULT: "#fbbf24", // Geel
-          dark: "#f59e0b",
-          light: "#fcd34d",
+          DEFAULT: "#9E9E9E", // Grijs
+          dark: "#757575",
+          light: "#BDBDBD",
         },
         gray: {
           50: "#FAFAFA",

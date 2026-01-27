@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle, Instagram } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,16 +15,40 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Hier zou normaal gesproken de form data naar een API worden gestuurd
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Er is een fout opgetreden');
+      }
+
+      setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", service: "", message: "" });
-    }, 3000);
+      
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Er is een fout opgetreden bij het verzenden');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -93,11 +117,18 @@ export default function Contact() {
                 
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-white" />
+                    <Instagram className="h-6 w-6 text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-black mb-1 uppercase text-sm">Instagram</h3>
-                    <p className="text-black font-normal uppercase">@POETSDRIFT</p>
+                    <a 
+                      href="https://www.instagram.com/poetsdrift" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-black font-normal uppercase hover:opacity-70 transition-opacity"
+                    >
+                      @POETSDRIFT
+                    </a>
                     <p className="text-sm text-black font-normal">Volg ons voor updates en voorbeelden</p>
                   </div>
                 </div>
@@ -122,6 +153,12 @@ export default function Contact() {
                   </p>
                 </div>
               ) : (
+                <>
+                  {error && (
+                    <div className="bg-red-50 border-2 border-red-500 p-4 mb-6 text-center">
+                      <p className="text-red-700 font-normal">{error}</p>
+                    </div>
+                  )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-black mb-2 uppercase">
@@ -206,12 +243,14 @@ export default function Contact() {
                   
                   <button
                     type="submit"
-                    className="w-full bg-black text-white px-8 py-4 border-2 border-black hover:bg-gray-800 transition-colors font-bold uppercase flex items-center justify-center"
+                    disabled={isSubmitting}
+                    className="w-full bg-black text-white px-8 py-4 border-2 border-black hover:bg-gray-800 transition-colors font-bold uppercase flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Verstuur Bericht
-                    <Send className="ml-2 h-5 w-5" />
+                    {isSubmitting ? 'Verzenden...' : 'Verstuur Bericht'}
+                    {!isSubmitting && <Send className="ml-2 h-5 w-5" />}
                   </button>
                 </form>
+                </>
               )}
             </div>
           </div>
