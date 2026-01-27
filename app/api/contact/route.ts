@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -37,6 +35,9 @@ export async function POST(request: NextRequest) {
         { status: 200 }
       );
     }
+
+    // Initialiseer Resend alleen als de API key beschikbaar is
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Formatteer de e-mail inhoud
     const emailSubject = `Nieuw contactformulier bericht van ${name}`;
